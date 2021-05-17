@@ -5,17 +5,16 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import styles from '../styles/JSONInput.module.css'
 import { validateFormInput, validateJSON } from '../utils/validateJson';
-import Examples from '../static-data/example-form.json'
 import Form from './Form';
 
 
 
 toast.configure()
 
-export default function JSONInput (){
+export default function JSONInput ({exampleJson}){
 
     //Initially the Example JSON is server-side rendered and the HTML file contains the JSON.
-    const [jsonString, setJsonString] = useState(JSON.stringify(Examples));
+    const [jsonString, setJsonString] = useState(JSON.stringify(exampleJson));
     const [jsonInputValue, setJsonInputValue] = useState('');
     const [error, setError] = useState(null);
 
