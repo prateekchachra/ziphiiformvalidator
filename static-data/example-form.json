@@ -2,9 +2,9 @@
     "input" : {
         "name" : "name",
         "label" : "Enter the name",
-        "theme" : "default",
-
-        "value" : "name"
+        "theme" : {
+            "fontSize" : "14"
+        }
     },
     "checkbox": {
         "name" : "isUser",
@@ -13,7 +13,11 @@
             "Yes",
             "No"
         ],
-        "theme" : "dark"
+        "theme" : {
+            "fontSize": "16",
+            "inputColor" : "turqoise",
+            "textColor" : "green"
+        }
 
     },
     "radio": {

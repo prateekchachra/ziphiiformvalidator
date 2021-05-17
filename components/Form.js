@@ -1,12 +1,12 @@
 import React from 'react'
+import generateStyles from '../utils/generateStyles'
+
 
 const DEFAULT_THEME = {
         "fontSize" : "16",
         "inputColor" : "white",
         "textColor": "black"
 }
-
-
 
 
 export default function Form({elements}){
@@ -16,23 +16,27 @@ export default function Form({elements}){
     const renderElement = (element) => {
 
         const {type, name, label, theme, values} = element;
+        
+        let themeStyledObj = theme ?  generateStyles({...DEFAULT_THEME, ...theme}) :
+         generateStyles(DEFAULT_THEME)
+
         if(type === 'input'){
 
-            return (<div className={theme?.containerClass}>
-                <p className={theme?.labelClass}>{label}</p>
-                <input name={name} style={theme?.inputClass}></input>
+            return (<div style={themeStyledObj?.containerClass}>
+                <p style={themeStyledObj?.labelClass}>{label}</p>
+                <input name={name} style={themeStyledObj?.inputClass}></input>
                 </div>)
         }
         else {
             // Only possibilities are radio and checkbox (for a basic implementation)
 
-            return (<div className={theme?.containerClass}>
-                <p className={theme?.labelClass}>{label}</p>
+            return (<div style={themeStyledObj?.containerClass}>
+                <p style={themeStyledObj?.labelClass}>{label}</p>
                 {values.map(item => (<React.Fragment><input type={element.type}
-                id={item} name={item} value={item} style={theme?.inputClass}>
+                id={item} name={item} value={item} style={themeStyledObj?.inputClass}>
 
                 </input>
-                <label for={item}>{item}</label>
+                <label htmlFor={item}>{item}</label>
                 </React.Fragment>))}
             </div>)
         }

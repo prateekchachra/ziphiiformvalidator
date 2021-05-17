@@ -1,12 +1,20 @@
 import React, {useState} from 'react';
 
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import styles from '../styles/JSONInput.module.css'
-import { validateJSON } from '../utils/validateJson';
+import { validateFormInput, validateJSON } from '../utils/validateJson';
 import Examples from '../static-data/example-form.json'
 import Form from './Form';
 
+
+
+toast.configure()
+
 export default function JSONInput (){
 
+    //Initially the Example JSON is server-side rendered and the HTML file contains the JSON.
     const [jsonString, setJsonString] = useState(JSON.stringify(Examples));
     const [jsonInputValue, setJsonInputValue] = useState('');
     const [error, setError] = useState(null);
@@ -18,7 +26,8 @@ export default function JSONInput (){
 
     }
 
-   const renderForm = () => {
+    const notifySuccessToast = () => toast('Form successfully rendered!')
+   const renderForm = () => { 
     let jsonObj = JSON.parse(jsonString);
 
     return (<Form elements={Object.keys(jsonObj).map(item => ( {...jsonObj[item], type: item}))} />
@@ -31,6 +40,11 @@ export default function JSONInput (){
 
         if(generatedObj){
 
+            if(validateFormInput(generatedObj)){
+                setJsonString(jsonInputValue)
+                notifySuccessToast()
+            }
+            else setError('JSON not according to the form guidelines. Please check the values in the JSON.')
 
         }
         else setError('JSON is not valid. Please try again.')
