@@ -1,0 +1,26 @@
+.container{
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+    text-align: center;
+    width: 100%;
+
+
+}
+
+
+.label {
+    align-self: center;
+}
+
+.input {
+    height: 20rem;
+}
+
+.button {
+    margin-top: 2rem;
+}
+.error {
+    color: red;
+    font-size: 12px;
+}

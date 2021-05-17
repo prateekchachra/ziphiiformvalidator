@@ -1,0 +1,27 @@
+{
+    "input" : {
+        "name" : "name",
+        "label" : "Enter the name",
+        "theme" : "default",
+
+        "value" : "name"
+    },
+    "checkbox": {
+        "name" : "isUser",
+        "label": "Have you used our app before?",
+        "values" : [
+            "Yes",
+            "No"
+        ],
+        "theme" : "dark"
+
+    },
+    "radio": {
+        "name": "gender",
+        "label": "Are you a",
+        "values": [
+            "male",
+            "female"
+        ]
+    }
+}
